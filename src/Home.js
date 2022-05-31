@@ -3,6 +3,7 @@ import './App.css';
 import CounterApp from "./CounterApp";
 import { useState } from 'react';
 import Api from './Api';
+import Header from './components/Header';
 
 const useCounter = () => {
   const [counter, setCounter] = useState(0);
@@ -20,7 +21,7 @@ const useCounter = () => {
 
 let aleatorio = Math.round(Math.random()*60);
 
-function App() {
+function Home() {
   const {data:character, loading, error} = Api(`https://rickandmortyapi.com/api/character/${aleatorio}`);
   const counterA = useCounter();
   const counterB = useCounter()
@@ -35,22 +36,30 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div>{counterA.counter}</div>
 
-     <button onClick={counterB.increase}>+</button>
+
+      <div>{counterA.counter}</div>
+
+     <button onClick={counterA.increase}>+</button>
+     <button onClick={counterA.decrease}> -</button>
 
      <div>{counterB.counter}</div>
-     <button onClick={counterA.increase}> +</button> */}
+     <button onClick={counterB.increase}> +</button>
+     <button onClick={counterB.decrease}> -</button>
+
       <br/>
-      <img src={character?.image} alt="" />
+      <img src={character?.izmage} alt="" />
      <h1>
        {character?.name}
      </h1>
 
      <h3>{character?.species}</h3>
      <h4>{character?.origin.name}</h4>
+
+      
+
     </div>
   );
 }
 
-export default App;
+export default Home;
